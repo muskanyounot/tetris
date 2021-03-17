@@ -2,8 +2,8 @@
   display:flex;
 }
 .grid {
-  width: 700px;
-  height: 700px;
+  width: 720px;
+  height: 720px;
   display:flex;
   flex-wrap:wrap;
   background-color: grey;
