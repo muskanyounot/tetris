@@ -3,7 +3,7 @@
 }
 .grid {
   width: 720px;
-  height: 720px;
+  height: px;
   display:flex;
   flex-wrap:wrap;
   background-color: grey;
@@ -28,7 +28,4 @@
   height:10px;
   width:10px;
 }
-.blockOutline {
-  border:2px solid black
-
-} 
+ 
