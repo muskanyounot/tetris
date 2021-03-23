@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   [64,65,66,67,68,69,70,71,72,136,144,208,210,211,212,213,216,280,282,286,288,352,354,355,356,357,360,424,426,430,432,496,498,499,500,501,504,568,576,640,641,642,643,644,646,647,648]
 
   const Cblock = 
-  [64,65,66,67,68,699,70,71,72,136,144,208,210,211,212,213,214,216,280,282,288,352,354,360,424,426,432,496,498,499,500,501,502,504,568,576,640,641,642,643,644,645,646,647,648]
+  [64,65,66,67,68,69,70,71,72,136,144,208,210,211,212,213,214,216,280,282,288,352,354,360,424,426,432,496,498,499,500,501,502,504,568,576,640,641,642,643,644,645,646,647,648]
 
   const Dblock =
   [11,12,13,14,15,16,17,18,82,90,154,156,157,158,159,162,226,228,232,234,298,300,304,306,370,372,375,378,442,444,445,446,450,514,522,586,587,588,589,590,591,592,593]
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const Zblock =
   [11,12,13,14,15,16,17,18,82,90,154,156,157,158,159,160,162,226,231,234,298,302,306,370,373,378,442,444,445,446,447,448,450,514,522,586,587,588,589,590,591,592,593,594]
 
-const Blocks = [Ablock, Bblock, Cblock, Dblock, Eblock, Fblock, Gblock, Hblock, IBlock, Jblock, Kblock, Lblock, Mblock, Nblock, Oblock, Pblock, Qblock,Rblock, Sblock, Tblock, Ublock, Vblock, Wblock, Xblock, Yblock,Zblock]
+//const Blocks = [Ablock, Bblock, Cblock, Dblock, Eblock, Fblock, Gblock, Hblock, IBlock, Jblock, Kblock, Lblock, Mblock, Nblock, Oblock, Pblock, Qblock,Rblock, Sblock, Tblock, Ublock, Vblock, Wblock, Xblock, Yblock,Zblock]
 
 
   const newABlock = Ablock.map(i =>i -1 )
@@ -121,63 +121,63 @@ const Blocks = [Ablock, Bblock, Cblock, Dblock, Eblock, Fblock, Gblock, Hblock, 
   const newZBlock = Ablock.map(i =>i -1 ) 
 console.log(newABlock)
 
-//const Blocks = [newABlock, newBBlock, newCBlock, newDBlock, newEBlock, newFBlock, newGBlock, newHBlock, newIBlock, newJBlock, newKBlock, newLBlock,newMBlock, newNBlock, newOBlock, newPBlock, newQBlock, newRBlock, newSBlock, newTBlock, newUBlock, newVBlock, newWBlock, newXBlock, newYBlock,newZBlock]
+const Blocks = [newABlock, newBBlock, newCBlock, newDBlock, newEBlock, newFBlock, newGBlock, newHBlock, newIBlock, newJBlock, newKBlock, newLBlock,newMBlock, newNBlock, newOBlock, newPBlock, newQBlock, newRBlock, newSBlock, newTBlock, newUBlock, newVBlock, newWBlock, newXBlock, newYBlock,newZBlock]
 
 
 
 
-  let currentPosition = 4
+  let currentPosition = 0
 
   let random = Math.floor(Math.random()*Blocks.length)
 
   let current = Blocks[random]
 
 
- function draw () {
-   current.forEach(index => {
-     squares [currentPosition + index].classList.add('blocks')
+  function draw () {
+    current.forEach(index => {
+      squares [currentPosition + index].classList.add('blocks')
 
-   })
- }
- function undraw() {
-   current.forEach(index => {
-     squares[currentPosition + index].classList.remove('blocks')
-   })
- }
+    })
+  }
+  function undraw() {
+    current.forEach(index => {
+        squares[currentPosition + index].classList.remove('blocks')
+    })
+  }
 
- timerID = setInterval(moveDown,1000)
+  timerID = setInterval(moveDown,1000)
 
- function control(e) {
- if(e.keyCode === 37) {
-   moveLeft()
- } else if(e.keyCode === 39){
-   moveRight()
- } else if(e.keyCode === 40){
-   moveDown()
- }
+function control(e) {
+if(e.keyCode === 37) {
+  moveLeft()
+} else if(e.keyCode === 39){
+  moveRight()
+} else if(e.keyCode === 40){
+  moveDown()
+}
 }
 document.addEventListener('keyup',control)
 
- function moveDown() {
-   undraw()
-   currentPosition += width
-   draw()
-   freeze()
- }
- function freeze() {
-   if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
-     current.forEach(index=> squares[currentPosition + index].classList.add('taken'))
-     random= nextRandom
+function moveDown() {
+  undraw()
+  currentPosition += width
+  draw()
+  freeze()
+}
+function freeze() {
+  if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
+    current.forEach(index=> squares[currentPosition + index].classList.add('taken'))
+    random= nextRandom
      nextRandom = Math.floor(Math.random() * Blocks.length)
-     current= Blocks[random]
-     currentPosition = 0
-     draw()
-     displayBlock()
+    current= Blocks[random]
+    currentPosition = 0
+    draw()
+    displayBlock()
 
-   }
- }
+  }
+}
 
- function moveLeft() {
+function moveLeft() {
   undraw()
   const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0)
 
@@ -186,19 +186,19 @@ document.addEventListener('keyup',control)
   if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
     currentPosition +=1
   }
- draw()
+  draw()
 }
 
 function moveRight() {
- undraw()
- const isAtRightEdge = current.some(index => (currentPosition + index) % width === width -1)
+  undraw()
+  const isAtRightEdge = current.some(index => (currentPosition + index) % width === width -1)
 
- if(!isAtRightEdge) currentPosition +=9
+  if(!isAtRightEdge) currentPosition +=9
 
- if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
-   currentPosition -=1
- }
- draw()
+  if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+  currentPosition -=1
+  }
+  draw()
 }
 
 // Displaying which letter is coming next
